@@ -1,2 +1,3 @@
 - [x] Store logs
-- [ ] Track Latitude and longiture
+- [X] Track Latitude and longiture
+- [ ] This should not have worked
