@@ -25,35 +25,53 @@
     <div class="app-container app-theme-grey">
         <div class="login-container driver-clockin">
             <div class="map-video">
-                <div id="map" style="height: 500px"></div>
+                <div id="map-form"></div>
                 <div class="video-section">
-                    <video id="player" autoplay="true" class="video-wrapper"></video>
+                    <!-- <video id="player" autoplay="true" class="video-wrapper"></video>
                     <button id="capture" class="btn hide btn-danger">Capture</button>
                     <br>
-                    <canvas id="snapshot"></canvas>
+                    <canvas id="snapshot"></canvas> -->
+
+
+
+                    <main id="camera">
+
+                        <!-- Camera sensor -->
+                        <canvas id="camera--sensor" class="hide"></canvas>
+
+                        <!-- Camera view -->
+                        <video id="camera--view" autoplay playsinline></video>
+
+                        <!-- Camera output -->
+                        <img src="//:0" alt="" id="camera--output">
+
+                        <!-- Camera trigger -->
+                        <button id="camera--trigger" class="hide">Take a picture</button>
+
+                    </main>
                 </div>
             </div>
             <div class="driver-form-section">
-                <form x-data="{load_type: ''}" class="needs-validation mb-3" action="{{url('resource')}}" method="post">
+                <form x-data="{ load_type: '' }" class="needs-validation mb-3" action="{{ url('resource') }}"
+                    method="post">
                     @csrf
-                    <input type="hidden" name="image" value="{{old('image')}}">
+                    <input type="hidden" name="image" value="{{ old('image') }}">
                     <input type="hidden" name="resource_type" value="log">
                     <div class="form-group row">
                         <div class="clockin-design">
                             <div class="form-check form-check-inline selecotr-item">
                                 <input class="form-check-input selector-item_radio" type="radio" name="type"
-                                    @checked(old('type')=='arrived' ) id="inlineRadio3" required value="arrived"
-                                    checked>
+                                    @checked(old('type') == 'arrived') id="inlineRadio3" required value="arrived" checked>
                                 <label class="form-check-label selector-item_label" for="inlineRadio3">ARRIVED</label>
                             </div>
                             <div class="form-check form-check-inline selecotr-item">
-                                <a class="btn break-button btn-toggle selector-item_label" href="{{url('/break')}}">
+                                <a class="btn break-button btn-toggle selector-item_label" href="{{ url('/break') }}">
                                     <span class="d-show">BREAK</span>
                                 </a>
                             </div>
                             <div class="form-check form-check-inline selecotr-item">
                                 <input class="form-check-input selector-item_radio" type="radio" name="type"
-                                    @checked(old('type')=='depart' ) id="inlineRadio4" required value="depart">
+                                    @checked(old('type') == 'depart') id="inlineRadio4" required value="depart">
                                 <label class="form-check-label selector-item_label" for="inlineRadio4">DEPART</label>
                             </div>
                         </div>
@@ -65,8 +83,8 @@
                             <div class="col-md-7">
                                 <select class="form-control" required name="location_id" id="selectLocation">
                                     <option value="">Select an option</option>
-                                    @foreach(\App\Models\Location::all() as $location)
-                                    <option value="{{$location->id}}">{{$location->name}}</option>
+                                    @foreach (\App\Models\Location::all() as $location)
+                                        <option value="{{ $location->id }}">{{ $location->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -78,8 +96,8 @@
 
                             <div class="col-7">
                                 <div class="switch-field">
-                                    <input x-model="load_type" type="radio" id="radio-one" name="load_type" value="Load"
-                                        checked />
+                                    <input x-model="load_type" type="radio" id="radio-one" name="load_type"
+                                        value="Load" checked />
                                     <label for="radio-one">LOAD</label>
                                     <input x-model="load_type" type="radio" id="radio-two" name="unload_type"
                                         value="unload" />
@@ -92,15 +110,19 @@
                                 <div class="form-group col-6">
                                     <label class=" col-form-label font-weight-bold"> CAGE</label>
                                     <div class="">
-                                        <input type="number" class="form-control" id="validationCustom01" min='1'
-                                            value="0" name="cage" placeholder="Number of load cage" required="">
+                                        <input type="number" inputmode="decimal" pattern="\d*"
+                                            class="form-control" id="validationCustom01" min='1'
+                                            value="0" name="cage" placeholder="Number of load cage"
+                                            required="">
                                     </div>
                                 </div>
                                 <div class="form-group col-6">
                                     <label class="col-form-label font-weight-bold"> PALLET</label>
                                     <div class="">
-                                        <input type="number" class="form-control" id="validationCustom01" min='1'
-                                            value="0" name="pallet" placeholder="Number of load palette" required="">
+                                        <input type="number" inputmode="decimal" pattern="\d*"
+                                            class="form-control" id="validationCustom01" min='1'
+                                            value="0" name="pallet" placeholder="Number of load palette"
+                                            required="">
                                     </div>
 
                                 </div>
@@ -131,30 +153,40 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
     <script>
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(success, error);
-    } else {
-        alert("Geolocation is not supported by this browser");
-    }
+        // if (navigator.geolocation) {
+        //     navigator.geolocation.getCurrentPosition(success, error);
+        // } else {
+        //     alert("Geolocation is not supported by this browser");
+        // }
 
-    function success(position) {
-        const latitude = position.coords.latitude;
-        const longitude = position.coords.longitude;
-        getMap(latitude, longitude);
-    }
+        // function success(position) {
+        //     const latitude = position.coords.latitude;
+        //     const longitude = position.coords.longitude;
+        //     //getMap(latitude, longitude);
+        //     console.log(latitude, longitude)
+        // }
 
-    function error() {
-        alert("Unable to retrieve location");
-    }
-    const myIcon = L.icon({
-        iconUrl: 'https://unpkg.com/leaflet@1.8.0/dist/images/marker-icon.png',
-    });
+        // function error() {
+        //     alert("Unable to retrieve location");
+        // }
+        const myIcon = L.icon({
+            iconUrl: 'https://unpkg.com/leaflet@1.8.0/dist/images/marker-icon.png',
+        });
 
-    function getMap(latitude, longitude) {
-        const map = L.map("map").setView([latitude, longitude], 16);
-        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
-        L.marker([latitude, longitude], {
-            icon: myIcon
+        // function getMap(latitude, longitude) {
+        //  const map = L.map("map").setView([latitude, longitude], 16);
+        //  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
+        //  L.marker([latitude, longitude], {
+        //      icon: myIcon
+        // }).addTo(map);
+        // }
+
+        var map = L.map('map-form');
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 16,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+            id: 'mapbox.streets'
         }).addTo(map);
     }
 
@@ -163,42 +195,126 @@
             if (image.value === '') {
                 document.getElementById('capture').click()
                 return false;
+
+        // placeholders for the L.marker and L.circle representing user's current position and accuracy    
+        var current_position, current_accuracy;
+
+        function onLocationFound(e) {
+            // if position defined, then remove the existing position marker and accuracy circle from the map
+            if (current_position) {
+                map.removeLayer(current_position);
+                map.removeLayer(current_accuracy);
+            }
+
+            var radius = e.accuracy / 10;
+
+            current_position = L.marker(e.latlng, {
+                    icon: myIcon
+                }).addTo(map)
+                .bindPopup("You are within " + radius + " meters from this point").openPopup();
+                console.log(current_position)
+            current_accuracy = L.circle(e.latlng, radius).addTo(map);
+        }
+        
+        function onLocationError(e) {
+            alert(e.message);
+        }
+
+        map.on('locationfound', onLocationFound);
+        map.on('locationerror', onLocationError);
+
+        // wrap map.locate in a function    
+        function locate() {
+            map.locate({
+                setView: true,
+                maxZoom: 16
+            });
+        }
+
+        // call locate every 3 seconds... forever
+        setInterval(locate, 3000);
+
+
+
+
+
+
+
+
+
+
+
+        function toggle() {
+            var x = document.getElementsByClassName("load-action");
+            if (x[0].style.display === "none") {
+                x[0].style.display = "block";
+            } else {
+                x[0].style.display = "none";
             }
         }
-    }
-    var player = document.getElementById("player");
-    var snapshotCanvas = document.getElementById("snapshot");
-    var captureButton = document.getElementById("capture");
-    var handleSuccess = function(stream) {
-        // Attach the video stream to the video element and autoplay.
-        player.srcObject = stream;
-    };
-
-    function handleVideo(stream) {
-        video.src = window.URL.createObjectURL(stream);
-    }
-
-    if (captureButton) captureButton.addEventListener("click", function() {
-        var context = snapshot.getContext("2d");
-        // Draw the video frame to the canvas.
-        context.drawImage(
-            player,
-            0,
-            0,
-            snapshotCanvas.width,
-            snapshotCanvas.height
-        );
-        document.forms[0].image.value = context.canvas.toDataURL()
-    });
-    navigator.mediaDevices.getUserMedia({
-        video: true
-    }).then(handleSuccess);
 
 
-    $(document).ready(function() {
-        $("#onload").hide();
+        // Set constraints for the video stream
+        var constraints = {
+            video: {
+                facingMode: "user"
+            },
+            audio: false
+        };
+        var track = null;
 
-    });
+        // Define constants
+        const cameraView = document.querySelector("#camera--view"),
+            cameraOutput = document.querySelector("#camera--output"),
+            cameraSensor = document.querySelector("#camera--sensor"),
+            cameraTrigger = document.querySelector("#camera--trigger");
+
+        // Access the device camera and stream to cameraView
+        function cameraStart() {
+            navigator.mediaDevices
+                .getUserMedia(constraints)
+                .then(function(stream) {
+                    track = stream.getTracks()[0];
+                    cameraView.srcObject = stream;
+                })
+                .catch(function(error) {
+                    console.error("Oops. Something is broken.", error);
+                });
+        }
+
+        // Take a picture when cameraTrigger is tapped
+        cameraTrigger.onclick = function() {
+            cameraSensor.width = cameraView.videoWidth;
+            cameraSensor.height = cameraView.videoHeight;
+            cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
+            cameraOutput.src = cameraSensor.toDataURL("image/webp");
+            cameraOutput.classList.add("taken");
+
+            document.forms[0].image.value = cameraOutput.src;
+            // track.stop();
+        };
+
+        // Start the video stream when the window loads
+        window.addEventListener("load", cameraStart, false);
+
+        function checkIfAllOk() {
+            document.getElementById("camera--trigger").click();
+            with(document.forms[0]) {
+                if (image.value === '') {
+                    alert("Please capture the image");
+                    return false;
+                }
+            }
+        }
+
+
+
+        $(document).ready(function() {
+            $("#onload").hide();
+
+
+
+        });
     </script>
 </body>
 

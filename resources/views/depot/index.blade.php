@@ -19,7 +19,8 @@
                 </div>
                 <div class="page-title-actions">
                     @can('create', new \App\Models\Depot)
-                    <button type="button" class="btn btn-shadow btn-danger" data-toggle="modal" data-target="#addDepot">Add Depot</button>
+                    <button type="button" class="btn btn-shadow btn-danger" data-toggle="modal"
+                        data-target="#addDepot">Add Depot</button>
                     @endcan
                 </div>
             </div>
@@ -30,7 +31,9 @@
                 <div class="card-body">
                     <h5 class="card-title">Locations</h5>
                     <div class="card-content">
-                        <table id="depotTable" class="table" data-id-field="code" data-sort-name="value1" data-sort-order="desc" data-show-chart="false" data-pagination="false" data-show-pagination-switch="false">
+                        <table id="depotTable" class="table" data-id-field="code" data-sort-name="value1"
+                            data-sort-order="desc" data-show-chart="false" data-pagination="false"
+                            data-show-pagination-switch="false">
                             <thead>
                                 <tr>
                                     <th>Id</th>
@@ -81,7 +84,8 @@
 </div>
 </div>
 
-<div class="modal fade" id="addDepot" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-modal="true" data-keyboard="false" data-backdrop="static">
+<div class="modal fade" id="addDepot" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-modal="true"
+    data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
             <form class="form w-100" method="POST" action="{{route('resource.store')}}">
@@ -113,11 +117,13 @@
 
                     <div class="form-group">
                         <label>Number of Cage</label>
-                        <input type="number" name="number_of_cage" class="form-control" placeholder="Cage number" required="required">
+                        <input type="number" name="number_of_cage" class="form-control" placeholder="Cage number"
+                            required="required">
                     </div>
                     <div class="form-group">
                         <label>Number of pallet</label>
-                        <input type="number" name="number_of_pallet" class="form-control" placeholder="pallet number" required="required">
+                        <input type="number" name="number_of_pallet" class="form-control" placeholder="pallet number"
+                            required="required">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -131,30 +137,30 @@
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script>
-    $(document).ready(function() {
+$(document).ready(function() {
 
 
 
-        var table = $('#depotTable').DataTable({
-            select: false,
-            "columnDefs": [{
-                className: "Name",
-                "targets": [0],
-                "visible": true,
-                "searchable": true
-            }]
-        });
-        $('#depotTable').Tabledit({
-            url: 'http://localhost:8080/depot',
-            columns: {
-                identifier: [0, 'id'],
-                editable: [
-                    [1, 'name'],
-                    [2, 'location']
-                ],
-            }
-        });
+    var table = $('#depotTable').DataTable({
+        select: false,
+        "columnDefs": [{
+            className: "Name",
+            "targets": [0],
+            "visible": true,
+            "searchable": true
+        }]
+    });
+    $('#depotTable').Tabledit({
+        url: `{{ config('app.APP_URL') }}`,
+        columns: {
+            identifier: [0, 'id'],
+            editable: [
+                [1, 'name'],
+                [2, 'location']
+            ],
+        }
+    });
 
-    })
+})
 </script>
 @endsection

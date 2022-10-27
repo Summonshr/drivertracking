@@ -42,13 +42,17 @@
                                 <div class="form-group row">
                                     <div class="col-md-6">
                                         <label>Full Name</label>
-                                        <input type="text" name="name" value="{{old('name')}}" class="form-control" placeholder="Driver's full name" required="">
+                                        <input type="text" name="name" value="{{old('name')}}" class="form-control"
+                                            placeholder="Driver's full name" required="">
                                     </div>
 
                                     <div class="col-md-6 relative-class">
                                         <label>Pin Number</label>
                                         <!-- <input type="number" class="form-control" placeholder="Generate Pin" required=""> -->
-                                        <input id="formGridPin"  minlength="4" type="number" name="pin" value="{{old('pin')}}" class="form-control @error('pin')) border border-danger @enderror" value="" placeholder="PIN" maxLength="4" minLength="4" />
+                                        <input id="formGridPin" minlength="4" type="number" name="pin"
+                                            value="{{old('pin')}}"
+                                            class="form-control @error('pin')) border border-danger @enderror" value=""
+                                            placeholder="PIN" maxLength="4" minLength="4" />
                                         @error('pin'))<p class="text text-danger">{{$message}}</p>@enderror
                                     </div>
                                 </div>
@@ -56,18 +60,23 @@
                                 <div class="form-group row">
                                     <div class="col-md-4">
                                         <label>Email Address</label>
-                                        <input type="text" class="form-control @error('email')) border border-danger @enderror" name="email" value="{{old('email')}}" placeholder="Driver's email address" required="">
+                                        <input type="text"
+                                            class="form-control @error('email')) border border-danger @enderror"
+                                            name="email" value="{{old('email')}}" placeholder="Driver's email address"
+                                            required="">
                                         @error('email'))<p class="text text-danger">{{$message}}</p>@enderror
                                     </div>
 
                                     <div class="col-md-4">
                                         <label>Phone Number</label>
-                                        <input type="text" class="form-control" name="phone" value="{{old('phone')}}" placeholder="Driver's contact number" required="">
+                                        <input type="text" class="form-control" name="phone" value="{{old('phone')}}"
+                                            placeholder="Driver's contact number" required="">
                                     </div>
 
                                     <div class="col-md-4">
                                         <label>DOB</label>
-                                        <input type="date" name="date_of_birth" value="{{old('date_of_birth')}}" class="form-control" placeholder="Driver's date of birth" required="">
+                                        <input type="date" name="date_of_birth" value="{{old('date_of_birth')}}"
+                                            class="form-control" placeholder="Driver's date of birth" required="">
                                     </div>
                                 </div>
 
@@ -75,7 +84,8 @@
 
                                     <div class="col-md-4">
                                         <label>Comments</label>
-                                        <textarea class="form-control" name="comments"  rows=" 3" placeholder="Comments">{{old('comments')}}</textarea>
+                                        <textarea class="form-control" name="comments" rows=" 3"
+                                            placeholder="Comments">{{old('comments')}}</textarea>
                                     </div>
 
                                     <div class="col-md-4">
@@ -83,7 +93,8 @@
                                         <select name="depo_id" class="mb-2 form-control">
                                             <option value="">Select Depo</option>
                                             @foreach(\App\Models\Depot::all() as $type)
-                                            <option @selected($type->id == old('depo_id')) value="{{$type->id}}">{{$type->name}}</option>
+                                            <option @selected($type->id == old('depo_id'))
+                                                value="{{$type->id}}">{{$type->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -96,7 +107,8 @@
 
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-secondary btn-lg"
+                                    data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-danger btn-lg">Save changes</button>
                             </div>
                         </form>

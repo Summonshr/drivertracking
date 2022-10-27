@@ -4,6 +4,7 @@
 <head>
     <base href="../">
     <meta charset="utf-8">
+    <meta name="Timesheet" content="#6777ef" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Language" content="en">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -15,6 +16,8 @@
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" />
+
 </head>
 
 <body>
@@ -59,7 +62,7 @@
                         <div class="widget-content p-0">
                             <div class="widget-content-wrapper">
                                 <div class="widget-content-left">
-                                    <a  href="{{route('admin.logout')}}" class="btn btn-icon font-weight-bold">
+                                    <a href="{{ route('admin.logout') }}" class="btn btn-icon font-weight-bold">
                                         <i class="fas fa-sign-out-alt"></i> Logout
                                     </a>
                                 </div>
@@ -109,34 +112,34 @@
                         <ul class="vertical-nav-menu">
                             <li>
                                 <!-- class="mm-active" -->
-                                <a href="{{route('admin.dashboard')}}">
+                                <a href="{{ route('admin.dashboard') }}">
                                     <i class="metismenu-icon pe-7s-graph1"></i>
                                     Dashboard
                                 </a>
                             </li>
 
                             <li>
-                                <a href="{{route('resource.view','driver')}}">
+                                <a href="{{ route('resource.view', 'driver') }}">
                                     <i class="metismenu-icon pe-7s-helm"></i>
                                     Drivers Details
                                 </a>
                             </li>
 
                             <li>
-                                <a href="{{route('resource.view','location')}}">
+                                <a href="{{ route('resource.view', 'location') }}">
                                     <i class="metismenu-icon pe-7s-map-marker"></i>
                                     Location Details
                                 </a>
                             </li>
 
                             <li>
-                                <a href="{{route('resource.view','depot')}}">
+                                <a href="{{ route('resource.view', 'depot') }}">
                                     <i class="metismenu-icon pe-7s-map-marker"></i>
                                     Depot Details
                                 </a>
                             </li>
                             <li>
-                                <a href="{{route('admin.search')}}">
+                                <a href="{{ route('admin.search') }}">
                                     <i class="metismenu-icon pe-7s-search"></i>
                                     Search
                                 </a>
@@ -154,6 +157,9 @@
         <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+
         @yield('scripts')
 </body>
+
 </html>

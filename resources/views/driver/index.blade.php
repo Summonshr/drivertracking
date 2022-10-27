@@ -20,7 +20,8 @@
                 </div>
                 <div class="page-title-actions">
                     @can('create', new \App\Models\Driver)
-                    <a class="btn btn-shadow btn-danger" href="{{route('resource.view',['driver','create'])}}">Add Drivers</a>
+                    <a class="btn btn-shadow btn-danger" href="{{route('resource.view',['driver','create'])}}">Add
+                        Drivers</a>
                     @endcan
                 </div>
             </div>
@@ -31,7 +32,9 @@
                 <div class="card-body">
                     <h5 class="card-title">Drivers</h5>
                     <div class="card-content">
-                        <table id="driverTable" class="table" data-id-field="code" data-sort-name="value1" data-sort-order="desc" data-show-chart="false" data-pagination="false" data-show-pagination-switch="false">
+                        <table id="driverTable" class="table" data-id-field="code" data-sort-name="value1"
+                            data-sort-order="desc" data-show-chart="false" data-pagination="false"
+                            data-show-pagination-switch="false">
                             <thead>
                                 <tr>
                                     <th>Id</th>
@@ -87,17 +90,17 @@
 </div>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script>
-    $(document).ready(function() {
-        var table = $('#driverTable').DataTable({
-            select: false,
-            "columnDefs": [{
-                className: "Name",
-                "targets": [0],
-                "visible": true,
-                "searchable": true
-            }]
-        });
-    })
+$(document).ready(function() {
+    var table = $('#driverTable').DataTable({
+        select: false,
+        "columnDefs": [{
+            className: "Name",
+            "targets": [0],
+            "visible": true,
+            "searchable": true
+        }]
+    });
+})
 </script>
 
 @endsection

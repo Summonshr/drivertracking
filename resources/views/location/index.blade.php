@@ -19,13 +19,16 @@
                 </div>
                 <div class="page-title-actions">
                     @can('create', new \App\Models\Location)
-                    <button type="button" class="btn btn-shadow btn-danger" data-toggle="modal" data-target="#addLocation">Add Location</button>
+                    <button type="button" class="btn btn-shadow btn-danger" data-toggle="modal"
+                        data-target="#addLocation">Add Location</button>
                     @endcan
                     @can('create', new \App\Models\TruckType)
-                    <button type="button" class="btn btn-shadow btn-danger" data-toggle="modal" data-target="#addTruck">Add Truck Type</button>
+                    <button type="button" class="btn btn-shadow btn-danger" data-toggle="modal"
+                        data-target="#addTruck">Add Truck Type</button>
                     @endcan
                     @can('create', new \App\Models\Supplier)
-                    <button type="button" class="btn btn-shadow btn-danger" data-toggle="modal" data-target="#addSup">Add Supplier</button>
+                    <button type="button" class="btn btn-shadow btn-danger" data-toggle="modal"
+                        data-target="#addSup">Add Supplier</button>
                     @endcan
                 </div>
             </div>
@@ -36,7 +39,9 @@
                     <div class="card-body">
                         <h5 class="card-title">Locations</h5>
                         <div class="card-content">
-                            <table id="locationTable" class="table" data-id-field="code" data-sort-name="value2" data-sort-order="desc" data-show-chart="false" data-pagination="false" data-show-pagination-switch="false">
+                            <table id="locationTable" class="table" data-id-field="code" data-sort-name="value2"
+                                data-sort-order="desc" data-show-chart="false" data-pagination="false"
+                                data-show-pagination-switch="false">
                                 <thead>
                                     <tr>
                                         <th>Id</th>
@@ -67,7 +72,9 @@
                     <div class="card-body">
                         <h5 class="card-title">Truck Type</h5>
                         <div class="card-content">
-                            <table id="truckTable" class="table" data-id-field="code" data-sort-name="value2" data-sort-order="desc" data-show-chart="false" data-pagination="false" data-show-pagination-switch="false">
+                            <table id="truckTable" class="table" data-id-field="code" data-sort-name="value2"
+                                data-sort-order="desc" data-show-chart="false" data-pagination="false"
+                                data-show-pagination-switch="false">
                                 <thead>
                                     <tr>
                                         <th>Id</th>
@@ -90,7 +97,9 @@
                     <div class="card-body">
                         <h5 class="card-title">Supplier</h5>
                         <div class="card-content">
-                            <table id="supTable" class="table" data-id-field="code" data-sort-name="value2" data-sort-order="desc" data-show-chart="false" data-pagination="false" data-show-pagination-switch="false">
+                            <table id="supTable" class="table" data-id-field="code" data-sort-name="value2"
+                                data-sort-order="desc" data-show-chart="false" data-pagination="false"
+                                data-show-pagination-switch="false">
                                 <thead>
                                     <tr>
                                         <th>Id</th>
@@ -138,7 +147,8 @@
 
 </div>
 
-<div class="modal fade" id="addLocation" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-modal="true" data-keyboard="false" data-backdrop="static">
+<div class="modal fade" id="addLocation" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-modal="true" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
             <form class="form w-100" action="{{route('resource.store')}}" method="POST">
@@ -160,7 +170,8 @@
 
                     <div class="form-group">
                         <label>Location Address</label>
-                        <input type="text" name="address" class="form-control" placeholder="Location Address" required="requried">
+                        <input type="text" name="address" class="form-control" placeholder="Location Address"
+                            required="requried">
                     </div>
 
                     <div class="form-group">
@@ -192,7 +203,8 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="addTruck" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-modal="true" data-keyboard="false" data-backdrop="static">
+<div class="modal fade" id="addTruck" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-modal="true"
+    data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
             <form class="form w-100" action="{{route('resource.store')}}" method="POST">
@@ -220,7 +232,8 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="addSup" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-modal="true" data-keyboard="false" data-backdrop="static">
+<div class="modal fade" id="addSup" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-modal="true"
+    data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
             <form class="form w-100" action="{{route('resource.store')}}" method="POST">
@@ -251,57 +264,57 @@
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script>
-    $(document).ready(function() {
-        var table = $('#locationTable').DataTable({
-            select: false,
-            "columnDefs": [{
-                className: "Name",
-                "targets": [0],
-                "visible": true,
-                "searchable": true
-            }]
-        });
+$(document).ready(function() {
+    var table = $('#locationTable').DataTable({
+        select: false,
+        "columnDefs": [{
+            className: "Name",
+            "targets": [0],
+            "visible": true,
+            "searchable": true
+        }]
+    });
 
-        $('#locationTable').Tabledit({
-            url: 'http://localhost:8080/location',
-            eventType: 'dblclick',
-            editButton: true,
-            columns: {
-                identifier: [0, 'id'],
-                editable: [
-                    [1, 'name'],
-                    [2, 'Truck Type', '{"1": "Red", "2": "Green", "3": "Blue"}'],
-                    [3, 'Supplier', '{"1": "Red", "2": "Green", "3": "Blue"}']
-                ]
-            }
-        });
+    $('#locationTable').Tabledit({
+        url: `{{ config('app.APP_URL') }}`,
+        eventType: 'dblclick',
+        editButton: true,
+        columns: {
+            identifier: [0, 'id'],
+            editable: [
+                [1, 'name'],
+                [2, 'Truck Type', '{"1": "Red", "2": "Green", "3": "Blue"}'],
+                [3, 'Supplier', '{"1": "Red", "2": "Green", "3": "Blue"}']
+            ]
+        }
+    });
 
 
-        $('#truckTable').Tabledit({
-            url: 'http://localhost:8080/location',
-            eventType: 'dblclick',
-            editButton: true,
-            columns: {
-                identifier: [0, 'id'],
-                editable: [
-                    [1, 'name'],
-                    [2, 'Truck Type']
-                ]
-            }
-        });
+    $('#truckTable').Tabledit({
+        url: `{{ config('app.APP_URL') }}`,
+        eventType: 'dblclick',
+        editButton: true,
+        columns: {
+            identifier: [0, 'id'],
+            editable: [
+                [1, 'name'],
+                [2, 'Truck Type']
+            ]
+        }
+    });
 
-        $('#supTable').Tabledit({
-            url: 'http://localhost:8080/location',
-            eventType: 'dblclick',
-            editButton: true,
-            columns: {
-                identifier: [0, 'id'],
-                editable: [
-                    [1, 'name'],
-                    [2, 'Supplier']
-                ]
-            }
-        });
-    })
+    $('#supTable').Tabledit({
+        url: `{{ config('app.APP_URL') }}`,
+        eventType: 'dblclick',
+        editButton: true,
+        columns: {
+            identifier: [0, 'id'],
+            editable: [
+                [1, 'name'],
+                [2, 'Supplier']
+            ]
+        }
+    });
+})
 </script>
 @endsection

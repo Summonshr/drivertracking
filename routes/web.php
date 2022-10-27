@@ -35,8 +35,7 @@ Route::post('/file/upload/{resource_type}/{resource?}', 'MediaController@upload'
 Route::post('punch-in', 'AuthController@punchIn')->name('punch-in');
 
 // Route::view('/','Pin.index');
-Route::view('/login', 'pin.index')->name('login');
+Route::view('/', 'pin.index')->name('login');
 Route::get('/table/{table}', function ($table) {
     return \DB::table(\Str::plural($table))->get();
 });
-
