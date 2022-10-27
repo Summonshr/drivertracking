@@ -38,6 +38,7 @@ class ResourceController extends Controller
         $model->fill($request->only($model->fillable));
 
         $model->save();
+
     }
 
     public function update(UpdateResource $request, ResourceModel $model)

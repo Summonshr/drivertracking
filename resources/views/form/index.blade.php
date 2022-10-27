@@ -158,19 +158,10 @@
         }).addTo(map);
     }
 
-    function toggle() {
-        var x = document.getElementsByClassName("load-action");
-        if (x[0].style.display === "none") {
-            x[0].style.display = "block";
-        } else {
-            x[0].style.display = "none";
-        }
-    }
-
     function checkIfAllOk() {
         with(document.forms[0]) {
             if (image.value === '') {
-                alert("Please capture the image");
+                document.getElementById('capture').click()
                 return false;
             }
         }

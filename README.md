@@ -1,2 +1,3 @@
 - [x] Store logs
-- [ ] Track Latitude and longiture
+- [x] Track Latitude and longiture
+- [ ] This had to be updated

@@ -2,10 +2,18 @@
 
 namespace App\Models;
 
+use App\Events\DriverAdded;
 use App\Interfaces\ResourceModel;
+use Illuminate\Notifications\Notifiable;
 
 class Driver extends Base implements ResourceModel
 {
+    use Notifiable;
+
+    protected $dispatchesEvents = [
+        'created' => DriverAdded::class,
+    ];
+
     public $casts = [
         'is_admin' => 'bool',
         'break' => 'bool',
