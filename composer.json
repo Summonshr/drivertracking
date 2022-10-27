@@ -9,6 +9,7 @@
         "guzzlehttp/guzzle": "^7.2",
         "ladumor/laravel-pwa": "^0.0.3",
         "laravel/framework": "^9.3",
+        "laravel/horizon": "^5.9",
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
         "silviolleite/laravelpwa": "^2.0",

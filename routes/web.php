@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Driver;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function () {
@@ -9,6 +10,12 @@ Route::middleware('auth')->group(function () {
     });
     Route::get('break', 'AuthController@break');
     Route::view('/is-in-break', 'break');
+});
+
+Route::get('/', function(){
+    $driver = new Driver();
+    $driver->name = 'woring';
+    $driver->save();
 });
 
 Route::prefix('admin')->group(function () {

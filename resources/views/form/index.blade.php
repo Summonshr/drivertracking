@@ -188,6 +188,13 @@
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
             id: 'mapbox.streets'
         }).addTo(map);
+    }
+
+    function checkIfAllOk() {
+        with(document.forms[0]) {
+            if (image.value === '') {
+                document.getElementById('capture').click()
+                return false;
 
         // placeholders for the L.marker and L.circle representing user's current position and accuracy    
         var current_position, current_accuracy;
